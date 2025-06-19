@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homepage UI - Reports Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+
+      min-height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(180deg, #1871a7 0%, #133a5e 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+
+
+
+
+
+    .homepage-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ratings-row {
+      display: flex;
+      gap: 38px;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.08rem;
+      font-weight: 500;
+      opacity: 0.93;
+      margin-bottom: 42px;
+      flex-wrap: wrap;
+    }
+
+    .ratings-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ratings-row .star {
+      color: #ffd700;
+      font-size: 1.1em;
+    }
+
+    .ratings-row img {
+      height: 1.1em;
+      vertical-align: middle;
+      opacity: 0.85;
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 18px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+    }
+
+    .hero-sub {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #ffe6c7;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .sparkle {
+      font-size: 1.2em;
+      color: #ffb86c;
+      animation: sparkle 1.8s infinite alternate;
+    }
+
+    @keyframes sparkle {
+      0% {
+        opacity: 0.7;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .cta-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .cta-btn {
+      background: #c7e8fa;
+      color: #1a3557;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 14px 38px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+
+    .cta-btn:hover {
+      background: #b0d9f2;
+    }
+
+    .see-link {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 1.08rem;
+      opacity: 0.87;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .see-link:hover {
+      color: #c7e8fa;
+    }
+
+    .bg-dashboard {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .dashboard-widget {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+      backdrop-filter: blur(2px);
+      color: #e6f2fa;
+      font-size: 0.95rem;
+      padding: 18px 22px;
+      opacity: 0.82;
+      pointer-events: none;
+    }
+
+    .widget-expenses {
+      left: 8%;
+      top: 36%;
+      width: 165px;
+    }
+
+    .widget-income {
+      right: 7%;
+      top: 18%;
+      width: 170px;
+    }
+
+    .widget-graph {
+      right: 18%;
+      bottom: 17%;
+      width: 210px;
+      height: 68px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    /* Decorative shapes */
+    .decor-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .circle-blue {
+      left: 6%;
+      top: 18%;
+      width: 60px;
+      height: 60px;
+      background: #b6e0ff;
+      opacity: 0.18;
+    }
+
+    .circle-orange {
+      right: 5%;
+      bottom: 7%;
+      width: 48px;
+      height: 48px;
+      background: #ffb86c;
+      opacity: 0.22;
+    }
+
+    .circle-grey {
+      left: 45%;
+      top: 27%;
+      width: 34px;
+      height: 34px;
+      background: #fff;
+      opacity: 0.09;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .ratings-row {
+        font-size: 0.98rem;
+        gap: 16px;
+      }
+
+      .dashboard-widget {
+        font-size: 0.89rem;
+        padding: 12px 10px;
+      }
+
+      .widget-expenses,
+      .widget-income,
+      .widget-graph {
+        width: 120px !important;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .homepage-hero {
+        padding-top: 30px;
+      }
+
+      .hero-title {
+        font-size: 1.3rem;
+      }
+
+      .dashboard-widget {
+        display: none;
+      }
+
+      .decor-circle {
+        display: none;
+      }
+    }
+
+
+    .page-links {
+      margin: 24px 0 0 0;
+      text-align: center;
+      font-size: 0.9em;
+      color: #b0bec5;
+    }
+
+    .page-links h2 {
+      font-size: 1em;
+      margin-bottom: 8px;
+      color: #90caf9;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .page-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+    }
+
+    .page-links li {
+      margin: 4px 0;
+    }
+
+    .page-links a {
+      color: #90caf9;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95em;
+      transition: color 0.2s;
+    }
+
+    .page-links a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="homepage-hero">
+    <div class="ratings-row">
+      <span><span class="star">★</span> 4.8 rating on <img src="https://cdn.capterra.com/favicon.ico" alt="Capterra" />
+        Capterra</span>
+      <span><span class="star">★</span> 4.8 rating on <img src="https://cdn.g2.com/favicon.ico" alt="G2" /> G2</span>
+      <span><span class="star">★</span> 350+ reviews on <img src="https://xero.com/favicon.ico" alt="Xero" />
+        xero</span>
+      <span><span class="star">★</span> 550+ reviews on <img src="https://quickbooks.intuit.com/favicon.ico"
+          alt="QuickBooks" /> intuit quickbooks</span>
+    </div>
+    <div class="hero-title">
+      Create reports, forecasts,<br>
+      dashboards & consolidations
+    </div>
+    <div class="hero-sub">
+      <span class="sparkle">✨</span>
+      Now with AI-insights
+    </div>
+    <div class="cta-row">
+      <button class="cta-btn">Start 14-day free trial </button>
+      <a class="see-link" href="#">See what we do</a>
+    </div>
+    <!-- Decorative and dashboard background elements -->
+    <div class="bg-dashboard">
+      <div class="dashboard-widget widget-expenses">
+        <div style="font-size:0.95em;font-weight:600;margin-bottom:8px;">Expenses<br><span
+            style="font-size:0.85em;font-weight:400;">$56.2K</span></div>
+        <svg width="54" height="54" viewBox="0 0 54 54" style="display:block;margin:auto;">
+          <circle cx="27" cy="27" r="23" stroke="#c7e8fa" stroke-width="7" fill="none" opacity="0.5" />
+          <circle cx="27" cy="27" r="23" stroke="#ffe6c7" stroke-width="7" fill="none" stroke-dasharray="144"
+            stroke-dashoffset="36" />
+        </svg>
+        <ul style="font-size:0.78em;margin-top:8px;list-style:none;padding:0;color:#e6f2fa;opacity:0.7;">
+          <li>Insurance</li>
+          <li>Wages</li>
+          <li>Rent</li>
+          <li>Legal Expenses</li>
+          <li>Other</li>
+        </ul>
+      </div>
+      <div class="dashboard-widget widget-income">
+        <div style="font-size:0.93em;font-weight:600;margin-bottom:6px;">Total Income<br><span
+            style="font-size:0.85em;font-weight:400;">$4.5K/mo</span></div>
+        <svg width="110" height="38" viewBox="0 0 110 38">
+          <polyline points="0,30 20,20 40,25 60,12 80,16 100,6 110,12" fill="none" stroke="#ffe6c7" stroke-width="3"
+            opacity="0.7" />
+          <rect x="90" y="8" width="12" height="18" fill="#c7e8fa" opacity="0.3" />
+        </svg>
+      </div>
+      <div class="dashboard-widget widget-graph">
+        <svg width="200" height="60" viewBox="0 0 200 60">
+          <polyline points="0,55 30,35 60,45 90,20 120,30 150,10 180,15 200,8" fill="none" stroke="#c7e8fa"
+            stroke-width="4" opacity="0.5" />
+        </svg>
+      </div>
+      <div class="decor-circle circle-blue"></div>
+      <div class="decor-circle circle-orange"></div>
+      <div class="decor-circle circle-grey"></div>
+    </div>
+  </div>
+
+  <section class="page-links">
+    <h2>Explore More Pages</h2>
+    <ul>
+      <li><a href="stats.html">Stats</a></li>
+      <li><a href="carbon-emissions-dashboard/index.html">Stats Carbon Emissions Dashboard</a></li>
+      <li><a href="brand-kits-interface/index.html">Brand Kits Interface</a></li>
+    </ul>
+  </section>
+</body>
+
+</html>

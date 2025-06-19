@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embodied Carbon Emissions Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header Section -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-titles">
+                    <h1 class="main-title">EMBODIED CARBON EMISSIONS</h1>
+                    <p class="subtitle">Intensity measured by kgCO2e/m²</p>
+                </div>
+                <button class="btn btn--primary download-btn" id="downloadBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download the data
+                </button>
+            </div>
+        </header>
+
+        <div class="dashboard-main">
+            <!-- Sidebar Filters -->
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h3 class="filter-title">Filter by</h3>
+                    
+                    <!-- Type Filters -->
+                    <div class="filter-group">
+                        <div class="filter-buttons">
+                            <button class="filter-btn" data-filter-type="type" data-value="refurbishment">Refurbishment</button>
+                            <button class="filter-btn" data-filter-type="type" data-value="new_build">New build</button>
+                            <button class="filter-btn active" data-filter-type="type" data-value="all">All</button>
+                        </div>
+                    </div>
+
+                    <!-- Status Filters -->
+                    <div class="filter-group">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter-type="status" data-value="complete">Complete</button>
+                            <button class="filter-btn" data-filter-type="status" data-value="estimate">Estimate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Section -->
+                <div class="key-section">
+                    <h4 class="key-title">Key</h4>
+                    <div class="key-items">
+                        <div class="key-item">
+                            <div class="key-line key-line--dashed"></div>
+                            <span class="key-text">500 kgCO2e/m² - Embodied Carbon Target 2030</span>
+                        </div>
+                        <div class="key-item">
+                            <div class="key-line key-line--solid"></div>
+                            <span class="key-text">600 kgCO2e/m² - Embodied Carbon Target 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Chart Area -->
+            <main class="chart-area">
+                <div class="chart-container">
+                    <div class="y-axis">
+                        <div class="y-axis-label">Embodied carbon intensity kgCO2e/m²</div>
+                        <div class="y-axis-scale">
+                            <span class="scale-value">1200</span>
+                            <span class="scale-value">1000</span>
+                            <span class="scale-value">800</span>
+                            <span class="scale-value">600</span>
+                            <span class="scale-value">400</span>
+                            <span class="scale-value">200</span>
+                            <span class="scale-value">0</span>
+                        </div>
+                    </div>
+                    <div class="chart-content">
+                        <div class="chart-grid">
+                            <div class="grid-line" style="bottom: 16.67%"></div>
+                            <div class="grid-line" style="bottom: 33.33%"></div>
+                            <div class="grid-line" style="bottom: 50%"></div>
+                            <div class="grid-line" style="bottom: 66.67%"></div>
+                            <div class="grid-line" style="bottom: 83.33%"></div>
+                            <div class="grid-line" style="bottom: 100%"></div>
+                        </div>
+                        <div class="reference-lines">
+                            <div class="reference-line reference-line--target-2030" data-value="500"></div>
+                            <div class="reference-line reference-line--target-2025" data-value="600"></div>
+                        </div>
+                        <div class="bars-container" id="barsContainer">
+                            <!-- Bars will be dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-content">
+            <div class="tooltip-name"></div>
+            <div class="tooltip-value"></div>
+            <div class="tooltip-details"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

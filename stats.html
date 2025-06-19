@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Statistics Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f3f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #333;
+            padding: 40px 20px;
+            line-height: 1.4;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+            padding: 20px 0;
+        }
+
+        .metric-card {
+            background: transparent;
+        }
+
+        .metric-header {
+            margin-bottom: 30px;
+        }
+
+        .metric-title {
+            font-size: 16px;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .metric-unit {
+            font-size: 14px;
+            color: #999;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .metric-value-container {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 300;
+            color: #333;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-change {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .change-indicator {
+            font-size: 12px;
+        }
+
+        .change-positive {
+            color: #8b5a3c;
+        }
+
+        .change-negative {
+            color: #8b5a3c;
+        }
+
+        .change-from {
+            font-size: 12px;
+            color: #999;
+            margin-left: 4px;
+        }
+
+        .progress-section {
+            margin-top: 40px;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .year-label {
+            font-size: 14px;
+            color: #666;
+            min-width: 45px;
+            font-weight: 400;
+        }
+
+        .progress-bar-container {
+            flex: 1;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: #e8e4e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #8b5a3c;
+            border-radius: 4px;
+            transition: width 0.8s ease-out;
+        }
+
+        .value-label {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .action-button {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .action-button:hover {
+            color: #8b5a3c;
+        }
+
+        .action-icon {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #999;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .action-button:hover .action-icon {
+            border-color: #8b5a3c;
+            color: #8b5a3c;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .metric-value {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Carbon Footprint Card -->
+        <div class="metric-card">
+            <div class="metric-header">
+                <h3 class="metric-title">Managed portfolio carbon footprint</h3>
+                <div class="metric-unit">tCO₂e</div>
+                
+                <div class="metric-value-container">
+                    <div class="metric-value">45,048</div>
+                    <div class="metric-change">
+                        <span class="change-indicator change-positive">↑</span>
+                        <span class="change-positive">16%</span>
+                        <span class="change-from">from 2019</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-item">
+                    <span class="year-label">2022</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">45,048</span>
+                </div>
+                
+                <div class="progress-item">
+                    <span class="year-label">2021</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 31%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">14,111</span>
+                </div>
+                
+                <div class="progress-item">
+                    <span class="year-label">2020</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 73%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">32,813</span>
+                </div>
+                
+                <div class="progress-item">
+                    <span class="year-label">2019</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 86%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">38,673</span>
+                </div>
+            </div>
+
+            <button class="action-button">
+                <span>See full breakdown of carbon footprint</span>
+                <div class="action-icon">→</div>
+            </button>
+        </div>
+
+        <!-- Energy Intensity Card -->
+        <div class="metric-card">
+            <div class="metric-header">
+                <h3 class="metric-title">Managed portfolio energy intensity</h3>
+                <div class="metric-unit">kWh/m²</div>
+                
+                <div class="metric-value-container">
+                    <div class="metric-value">123</div>
+                    <div class="metric-change">
+                        <span class="change-indicator change-negative">↓</span>
+                        <span class="change-negative">22%</span>
+                        <span class="change-from">from 2019</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-item">
+                    <span class="year-label">2022</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 78%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">123</span>
+                </div>
+                
+                <div class="progress-item">
+                    <span class="year-label">2021</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 82%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">128</span>
+                </div>
+                
+                <div class="progress-item">
+                    <span class="year-label">2020</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 86%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">135</span>
+                </div>
+                
+                <div class="progress-item">
+                    <span class="year-label">2019</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">157</span>
+                </div>
+            </div>
+
+            <button class="action-button">
+                <span>Download the data</span>
+                <div class="action-icon">↓</div>
+            </button>
+        </div>
+
+        <!-- Energy Consumption Card -->
+        <div class="metric-card">
+            <div class="metric-header">
+                <h3 class="metric-title">Managed portfolio energy consumption</h3>
+                <div class="metric-unit">kWh</div>
+                
+                <div class="metric-value-container">
+                    <div class="metric-value">47,790,662</div>
+                    <div class="metric-change">
+                        <span class="change-indicator change-negative">↓</span>
+                        <span class="change-negative">27%</span>
+                        <span class="change-from">from 2019</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-item">
+                    <span class="year-label">2022</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 73%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">47,790,662</span>
+                </div>
+                
+                <div class="progress-item">
+                    <span class="year-label">2021</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 76%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">49,324,077</span>
+                </div>
+                
+                <div class="progress-item">
+                    <span class="year-label">2020</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">48,784,205</span>
+                </div>
+                
+                <div class="progress-item">
+                    <span class="year-label">2019</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <span class="value-label">65,198,706</span>
+                </div>
+            </div>
+
+            <button class="action-button">
+                <span>Download the data</span>
+                <div class="action-icon">↓</div>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth animation on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-bar-fill');
+            
+            // Reset all progress bars to 0 width
+            progressBars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                
+                // Animate to target width after a short delay
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
